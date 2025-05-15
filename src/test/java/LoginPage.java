@@ -1,0 +1,35 @@
+import org.openqa.selenium.By;
+
+public class LoginPage extends PageObjects{
+
+    public static final String URL_HOME = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+    public static final String URL_LOGIN = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+
+    public LoginPage() {
+        super(null);
+        browser.navigate().to(URL_LOGIN);
+    }
+
+    public void inserirDadosParaLogin(String username, String password) {
+        browser.findElement(By.name("username")).sendKeys(username);
+        browser.findElement(By.name("password")).sendKeys(password);
+        browser.findElement(By.cssSelector(".oxd-form")).submit();
+    }
+
+    public boolean isAtualUrlIgualUrlHome() {
+        return browser.getCurrentUrl().equals(URL_HOME);
+    }
+
+    public boolean isElementoDashboardInexistente() {
+        return browser.findElements(By.cssSelector(".oxd-grid-3.orangehrm-dashboard-grid")).isEmpty();
+    }
+
+    public boolean isAtualUrlIgualUrlLogin() {
+        return browser.getCurrentUrl().equals(URL_LOGIN);
+    }
+
+    public boolean isElementoFormularioLoginInexistente() {
+        return browser.findElements(By.cssSelector(".oxd-form")).isEmpty();
+    }
+
+}
