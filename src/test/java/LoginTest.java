@@ -21,21 +21,30 @@ public class LoginTest {
     public void deveRealizarLogin(){
         loginPage.inserirDadosParaLogin("Admin", "admin123");
 
-        Assertions.assertTrue(loginPage.isAtualUrlIgualUrlHome());
+        Assertions.assertTrue(loginPage.isAtualUrlIgualUrlDashboard());
         Assertions.assertTrue(!loginPage.isElementoDashboardInexistente());
         Assertions.assertFalse(loginPage.isAtualUrlIgualUrlLogin());
         Assertions.assertFalse(!loginPage.isElementoFormularioLoginInexistente());
     }
 
     @Test
-    public void naoDeveRealizarLoginComDadosInvalidos(){
+    public void naoDeveRealizarLoginComDadosNulos(){
         loginPage.inserirDadosParaLogin("", "");
 
-        Assertions.assertFalse(loginPage.isAtualUrlIgualUrlHome());
+        Assertions.assertFalse(loginPage.isAtualUrlIgualUrlDashboard());
         Assertions.assertFalse(!loginPage.isElementoDashboardInexistente());
         Assertions.assertTrue(loginPage.isAtualUrlIgualUrlLogin());
-        Assertions.assertTrue(!loginPage.isElementoFormularioLoginInexistente());
+        Assertions.assertEquals("Required", loginPage.getSpanRequired());
     }
 
+    @Test
+    public void naoDeveRealizarLoginComPasswordInvalido(){
+        loginPage.inserirDadosParaLogin("Admin", "senha-invalida");
+
+        Assertions.assertFalse(loginPage.isAtualUrlIgualUrlDashboard());
+        Assertions.assertFalse(!loginPage.isElementoDashboardInexistente());
+        Assertions.assertTrue(loginPage.isAtualUrlIgualUrlLogin());
+        Assertions.assertEquals("Invalid credentials", loginPage.getAlertInvalidCredentials());
+    }
 
 }

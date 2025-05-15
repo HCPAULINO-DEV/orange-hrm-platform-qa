@@ -2,7 +2,7 @@ import org.openqa.selenium.By;
 
 public class LoginPage extends PageObjects{
 
-    public static final String URL_HOME = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
+    public static final String URL_DASHBOARD = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
     public static final String URL_LOGIN = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
 
     public LoginPage() {
@@ -16,8 +16,8 @@ public class LoginPage extends PageObjects{
         browser.findElement(By.cssSelector(".oxd-form")).submit();
     }
 
-    public boolean isAtualUrlIgualUrlHome() {
-        return browser.getCurrentUrl().equals(URL_HOME);
+    public boolean isAtualUrlIgualUrlDashboard() {
+        return browser.getCurrentUrl().equals(URL_DASHBOARD);
     }
 
     public boolean isElementoDashboardInexistente() {
@@ -32,4 +32,11 @@ public class LoginPage extends PageObjects{
         return browser.findElements(By.cssSelector(".oxd-form")).isEmpty();
     }
 
+    public String getSpanRequired() {
+        return browser.findElement(By.cssSelector(".oxd-text.oxd-text--span.oxd-input-field-error-message.oxd-input-group__message")).getText();
+    }
+
+    public String getAlertInvalidCredentials() {
+        return browser.findElement(By.cssSelector(".oxd-text.oxd-text--p.oxd-alert-content-text")).getText();
+    }
 }

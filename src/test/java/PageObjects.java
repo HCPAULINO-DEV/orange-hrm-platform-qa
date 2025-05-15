@@ -16,8 +16,8 @@ public class PageObjects {
         }
 
         this.browser.manage().timeouts()
-                .implicitlyWait(5, TimeUnit.SECONDS) //PARA TRABALHAR COM AJAX OU ELEMENTOS DO JAVASCRIPT QUE DEMORE PARA CARREGAR
-                .pageLoadTimeout(10, TimeUnit.SECONDS); //PARA TRABALHAR COM AJAX OU PÁGINAS QUE DEMORE PARA CARREGAR
+                .implicitlyWait(3, TimeUnit.SECONDS) //PARA TRABALHAR COM AJAX OU ELEMENTOS DO JAVASCRIPT QUE DEMORE PARA CARREGAR
+                .pageLoadTimeout(5, TimeUnit.SECONDS); //PARA TRABALHAR COM AJAX OU PÁGINAS QUE DEMORE PARA CARREGAR
 
     }
 
