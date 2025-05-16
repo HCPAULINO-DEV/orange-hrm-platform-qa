@@ -10,10 +10,12 @@ public class LoginPage extends PageObjects{
         browser.navigate().to(URL_LOGIN);
     }
 
-    public void inserirDadosParaLogin(String username, String password) {
+    public DashboardPage inserirDadosParaLogin(String username, String password) {
         browser.findElement(By.name("username")).sendKeys(username);
         browser.findElement(By.name("password")).sendKeys(password);
         browser.findElement(By.cssSelector(".oxd-form")).submit();
+
+        return new DashboardPage(browser);
     }
 
     public boolean isAtualUrlIgualUrlDashboard() {
